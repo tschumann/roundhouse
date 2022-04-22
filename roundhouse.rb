@@ -1,14 +1,9 @@
 require_relative 'game'
+require_relative 'machine'
 
-wheels = [
-	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-	['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-]
+machine = Machine.new()
 
-spins = wheels.length().times.map{ rand(30..60) }
+spins = machine.wheels.length().times.map{ rand(30..60) }
 
 def get_offset(spin, wheel_length, offset)
 	return ((spin % wheel_length) + offset) % wheel_length
@@ -28,8 +23,8 @@ for i in 0 ... ARGV.length
 end
 
 for row in 0..2 do
-	for w in 0..wheels.length() - 1 do
-		print(wheels[w][get_offset(spins[w], wheels[w].length(), row)] + " ")
+	for w in 0..machine.wheels.length() - 1 do
+		print(machine.wheels[w][get_offset(spins[w], machine.wheels[w].length(), row)] + " ")
 	end
 	puts("")
 end
